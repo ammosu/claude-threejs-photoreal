@@ -39,22 +39,25 @@ cd ~/git_project/my-room && python3 -m http.server 5430 --bind 127.0.0.1
 - 這個腳本會把範本複製過去，並把各子 skill 的程式庫複製到 `src/lib/`（gi、post、props、textures、cloth、vegetation、pothos、sky、film），專案從此獨立運作。
 - 不需要打包工具，也不用 npm。three 和 three-mesh-bvh 從 jsdelivr 載入。
 - URL 參數：
-  - `?cam=`：鏡頭（room、desk、window）。
+  - `?cam=`：鏡頭（room、desk、window、corner、view＝站在窗邊往外看）。
+  - `?t=`：固定時間（樹葉、雲不動，截圖用）。
   - `?view=gi`：只看光照。
   - `?only=furniture`：只建某個零件。
   - `?exp=`：曝光。
-- 頁面提供 `window.__ready`、`window.__stats`，可以直接接 `webgl-deterministic-recording` 的工具。
+- 頁面提供 `window.__ready`、`window.__stats`、`window.__camera`，可以直接接 `webgl-deterministic-recording` 的工具。
+- 操作：拖曳轉視角；**WASD／方向鍵走動**（Shift 慢走，會擋牆和家具）；**點一下畫面**改成滑鼠直接轉頭、視線降到 1.6 m（Esc 離開）。環繞模式的鏡頭和注視點都限制在房間內，拉遠、平移都不會穿出牆。
 
 範本的結構：
 
 | 檔案 | 內容 |
 |---|---|
-| `src/layout.js` | **唯一**放尺寸、太陽、天空、調色、鏡頭的地方 |
+| `src/layout.js` | **唯一**放尺寸、太陽、天空（`SKIES` 預設）、窗外配置（`OUTSIDE`）、調色、鏡頭、不能穿過的家具範圍（`BLOCKERS`）的地方 |
 | `src/materials.js` | `lit()`（GI 補丁，保留原本的 shader 補丁，記錄反照率）、`solid()`、`tbox()`、`tplane()`、`metres()` |
 | `src/scene.js` | 依 `order` 建立每個零件，順序固定 |
-| `src/parts/room.js` | 地板、天花板、四面牆、窗洞與窗台、黑色外殼、牆芯、窗外草地 |
+| `src/parts/room.js` | 地板、天花板、四面牆、窗洞與窗台、黑色外殼、牆芯 |
+| `src/parts/outside.js` | 窗外：天空球、草地、碎石路、樹籬、房子、遠方樹牆、主樹與中遠景樹（只建看得到的，`threejs-sky-backdrop` + `threejs-procedural-vegetation`）。全部 `gi = false`、不擋烘焙光 |
 | `src/parts/furniture.js` | 桌子、椅子、掛在椅背的毛巾（PBD）、杯子、水壺、桌上的書、書架上的書 |
-| `src/main.js` | 建立場景 → 烘焙、讀檔或平光 → 太陽 → 反射 → 後製 → 鏡頭 |
+| `src/main.js` | 建立場景 → 烘焙、讀檔或平光 → 太陽 → 反射 → 後製 → 鏡頭（環繞＋走動，限制在房間內） |
 
 ## 跨 skill 一定要遵守
 
@@ -67,6 +70,8 @@ cd ~/git_project/my-room && python3 -m http.server 5430 --bind 127.0.0.1
 6. **牆要有實心的牆芯，牆芯的 `shadowSide` 設成 `FrontSide`。**少了它，太陽會在牆腳和牆角漏出一排亮點（實際遇過；詳見 `references/integration.md`）。
 7. **曝光對準室內。**室內大約只有室外的 1/20：`exposure` 約 4.5，窗外用 `ext` 約 0.3 壓暗。
 8. **反射在烘焙之後拍。**`captureEnv` 要在 `applyBake`／`runBake` 之後執行，探針放在房間中央。
+9. **有窗外遠景時，鏡頭 far 要大於最遠的東西。**範本是 400 m（樹牆在 100 m、草地延伸到 260 m）。far 只有 100 時，遠景被切掉的那一圈會露出白色的地平線霧帶，而且跟著視角移動（實際遇過）。
+10. **太陽的陰影相機要涵蓋窗外的樹冠**，樹蔭才會落進來：範本把太陽放在 30 m 外，near 12、far 40。
 
 ## 實測（範本，RTX 4090、Chrome headless、1280×800）
 

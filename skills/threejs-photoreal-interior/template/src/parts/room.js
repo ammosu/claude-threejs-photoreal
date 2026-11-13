@@ -58,7 +58,7 @@ export function build(ctx) {
     const o = add(new THREE.BoxGeometry(x1 - x0, y1 - y0, T - 0.004), shellM, 'wallCore', (m) => m.position.set((x0 + x1) / 2, (y0 + y1) / 2, -T / 2));
     o.userData.gi = false; o.userData.bakeOccluder = false; o.receiveShadow = false;
   }
-  add(tplane(30, 20, 0.5), solid([0.3, 0.42, 0.2], 0.95), 'lawn', (o) => { o.rotation.x = -Math.PI / 2; o.position.set(W / 2, -0.001, -T - 10); });
+  // the garden outside is built by parts/outside.js
   ctx.colliders.push({ min: [0, 0, 0], max: [W, H, D], inside: true });
   return g;
 }
