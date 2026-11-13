@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>procedural curtains</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #1d1c1a; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #0009; padding: 8px 12px; border-radius: 6px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div>cam: <a href="?cam=front">正面</a><a href="?cam=angle">斜看</a><a href="?cam=top">頂部特寫</a><a href="?cam=hem">下擺特寫</a><a href="?cam=above">俯視剖面</a></div>
+  <div><a href="?tied=1">下擺收攏</a><a href="?fullness=1.6">布少（1.6 倍）</a><a href="?loops=4">環少</a><a href="?tex=checker">棋盤格 UV</a></div>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./curtain-main.js"></script>
+</body>
+</html>

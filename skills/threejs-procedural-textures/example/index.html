@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>procedural textures</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #0009; padding: 8px 12px; border-radius: 6px; max-width: 460px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; max-height: 70vh; overflow: auto; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div>cam: <a href="?cam=room">全景</a><a href="?cam=desk">桌面</a><a href="?cam=glint">桌面反光</a><a href="?cam=fabric">織物</a><a href="?cam=floor">地板</a><a href="?cam=wall">牆面掠射</a><a href="?cam=books">書</a></div>
+  <div><a href="?flat=1">關掉細節（對照）</a></div>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

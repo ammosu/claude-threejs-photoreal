@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>sky + backdrop</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #0009; padding: 8px 12px; border-radius: 6px; max-width: 520px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; max-height: 60vh; overflow: auto; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div>sky: <a href="?sky=dawn">dawn</a><a href="?sky=day">day</a><a href="?sky=overcast">overcast</a><a href="?sky=golden">golden</a></div>
+  <div>cam: <a href="?cam=window">從房間看出去</a><a href="?cam=wide">窗前</a><a href="?cam=up">仰望天空</a><a href="?cam=out">外面俯瞰（看裁切）</a>　<a href="?cull=0">不裁切</a></div>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

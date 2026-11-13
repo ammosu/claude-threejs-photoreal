@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>procedural trees</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #000a; padding: 8px 12px; border-radius: 6px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div><a href="?cam=ground">地面</a><a href="?cam=under">樹下仰望</a><a href="?cam=wide">遠景</a><a href="?cam=leaf">葉片特寫</a><a href="?only=hero">只有主樹</a><a href="?wind=2">強風</a><a href="?wind=0">無風</a></div>
+  <div id="fps"></div>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

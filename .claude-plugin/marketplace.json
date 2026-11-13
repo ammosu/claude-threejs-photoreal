@@ -1,0 +1,13 @@
+{
+  "name": "claude-threejs-photoreal",
+  "owner": { "name": "cw.chang" },
+  "plugins": [
+    {
+      "name": "threejs-photoreal",
+      "source": "./",
+      "description": "照片級 three.js 場景的 10 個 skill：從總綱、材質、布料、小物、植物、天空，到烘焙光照、後製和電影輸出",
+      "category": "development"
+    }
+  ],
+  "metadata": { "description": "Procedural photoreal three.js scenes, adapted from room-at-dawn (MIT)" }
+}

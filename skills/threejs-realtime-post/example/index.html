@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>real-time post</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #0009; padding: 8px 12px; border-radius: 6px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div><a href="?">完整後製</a><a href="?post=three">three.js 預設（ACES）</a><a href="?ao=0">關 AO</a><a href="?bloom=0">關 bloom</a><a href="?ext=1">窗外不壓暗</a><a href="?grade=0">不調色</a><a href="?look=dawn">dawn 色調</a><a href="?look=warm">warm 色調</a></div>
+  <div>cam: <a href="?cam=room">房間</a><a href="?cam=corner">角落</a><a href="?cam=window">窗</a></div>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

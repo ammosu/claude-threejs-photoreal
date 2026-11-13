@@ -1,0 +1,8 @@
+{
+  "name": "threejs-photoreal",
+  "version": "0.1.0",
+  "description": "照片級 three.js 場景，全部用程式生成（不用模型檔、貼圖、HDRI）：總綱與一鍵開專案、布料與窗簾、材質貼圖、生活感小物與布料垂掛、樹木、黃金葛、天空與窗外遠景、頂點烘焙光照、即時後製、電影級逐格算繪。改寫自 room-at-dawn（MIT）。",
+  "author": { "name": "cw.chang" },
+  "license": "MIT",
+  "keywords": ["three.js", "webgl", "procedural", "photoreal", "baked-gi", "cloth", "vegetation", "sky", "post-processing", "rendering"]
+}

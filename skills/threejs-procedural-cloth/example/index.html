@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>procedural cloth</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #1d1c1a; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #0009; padding: 8px 12px; border-radius: 6px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre; font: 11px monospace; color: #aaa; margin-top: 6px; }
+  button { margin-top: 6px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div>stage:
+    <a href="?stage=1">1 團塊</a><a href="?stage=2">2 +折</a><a href="?stage=3">3 +削峰</a><a href="?stage=4">4 +皺褶</a><a href="?stage=5">5 +翻角/傾倒</a>
+  </div>
+  <div><a href="?stage=5&tex=checker">棋盤格 UV</a><a href="?stage=5&tex=checker&relax=0">不攤平 UV</a><a href="?stage=5&cam=close">特寫</a></div>
+  <button id="glb">下載 GLB</button>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

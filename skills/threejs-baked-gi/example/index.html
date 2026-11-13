@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>baked GI</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; color: #ddd; font: 13px/1.5 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  #ui { position: fixed; left: 12px; top: 10px; background: #000a; padding: 8px 12px; border-radius: 6px; max-width: 420px; }
+  #ui a { color: #9cf; margin-right: 8px; }
+  #stats { white-space: pre-wrap; font: 11px monospace; color: #aaa; margin-top: 6px; max-height: 60vh; overflow: auto; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui">
+  <div><a href="?bake=256">烘焙 256 spp</a><a href="?bake=32">快速 32 spp</a><a href="?">載入 gi.bin</a><a href="?test=furnace&bake=32">能量檢查</a></div>
+  <div><a href="?bake=256&cam=window">看窗</a><a href="?bake=256&cam=corner">角落</a><a href="?bake=256&view=gi">只看光</a></div>
+  <button id="dl">下載 gi.bin</button>
+  <div id="stats"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
