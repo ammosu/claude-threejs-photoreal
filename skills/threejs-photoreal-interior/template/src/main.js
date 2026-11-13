@@ -87,8 +87,10 @@ function step(dt) {
   camera.getWorldDirection(fwd); fwd.y = 0; fwd.normalize(); side.crossVectors(fwd, camera.up);
   const v = (keys.has('ShiftLeft') || keys.has('ShiftRight') ? 0.6 : 1.4) * dt, dx = (fwd.x * f + side.x * s) * v, dz = (fwd.z * f + side.z * s) * v;
   const p = camera.position, x0 = p.x, z0 = p.z;
-  if (!blocked(p.x + dx, p.z)) p.x += dx;                             // slide along walls and furniture
-  if (!blocked(p.x, p.z + dz)) p.z += dz;
+  const stuck = blocked(p.x, p.z);                                     // a preset camera (e.g. ?cam=view at the table) may start inside a footprint: let it walk out
+  if (stuck || !blocked(p.x + dx, p.z)) p.x += dx;                    // slide along walls and furniture
+  if (stuck || !blocked(p.x, p.z + dz)) p.z += dz;
+  p.x = Math.min(W - R, Math.max(R, p.x)); p.z = Math.min(D - R, Math.max(R, p.z));
   if (!walk.isLocked) { controls.target.x += p.x - x0; controls.target.z += p.z - z0; }   // orbit mode: WASD walks too, drag to look
 }
 const fixT = Q.has('t') ? +Q.get('t') : null, clock0 = performance.now(); let last = performance.now();
