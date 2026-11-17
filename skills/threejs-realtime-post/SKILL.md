@@ -17,6 +17,7 @@ description: three.js 即時寫實後製，一個小類別就能用，不需要 
 | `example/` | 有窗戶的房間：沙發、書架、立燈、角落盆栽，窗外是陽光下的草地與樹 |
 | `example/preview.jpg` | 六格比較：完整後製／three.js ACES／窗外不壓暗／dawn 色調／角落 AO 開與關 |
 | `references/passes.md` | 每個 pass 的做法和數值、調色參數表、遇過的問題、效能、搬到 Godot／Unreal |
+| （相關）`../threejs-sky-backdrop/references/outdoor-sky-and-rays.md` §4 | 雲隙光（god rays）pass 的做法，要放在 bloom 與調色之前。尚未實測 |
 
 ## 跑範例
 
